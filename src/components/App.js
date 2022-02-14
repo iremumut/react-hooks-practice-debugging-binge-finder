@@ -16,9 +16,9 @@ function App() {
     Adapter.getShows().then((shows) => setShows(shows));
   }, []);
 
-  useEffect(() => {
+  /*useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  },[]);*/
 
   function handleSearch(e) {
     setSearchTerm(e.target.value.toLowerCase());
@@ -40,7 +40,7 @@ function App() {
   let displayShows = shows;
   if (filterByRating) {
     displayShows = displayShows.filter((s) => {
-      s.rating.average >= filterByRating;
+      return (s.rating.average >= filterByRating);
     });
   }
 
@@ -53,7 +53,7 @@ function App() {
       />
       <Grid celled>
         <Grid.Column width={5}>
-          {!!selectedShow ? (
+          {!selectedShow ? (
             <SelectedShowContainer
               selectedShow={selectedShow}
               allEpisodes={episodes}
